@@ -6,7 +6,7 @@ async function makeRatingFile(path, array) {
             console.log(err);
             return;
         }
-        const ratingArray = JSON.parse()
+        const ratingArray = JSON.parse(ratingFile);
 
         array.forEach((item) => {
             if (!ratingArray.find((el) => el.id === item.id)) {
