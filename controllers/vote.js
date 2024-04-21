@@ -1,19 +1,14 @@
-const parseBody = require("../appModules/http-utils/parse-body");
+const httpUtils = require("../appModules/http-utils");
 
 async function voteRouteController(req, res) {
     if (req.method !== "POST") {
         res.statusCode = 404;
         res.end("Not Found");
-    }
-    parseBody(req, (err, body) => {
-        if (err) {
-            res.statusCode = 500;
-            res.end("Internal Server Error");
-        }
-        console.log(body);
+    } else {
         res.statusCode = 200;
-        res.end("Success!");
-    });
+        const body = await httpUtils.parseBody(req);
+        const data = JSON.parse(body);
+        console.log(data);
+    }
 }
-
-module.exports = voteRouteController
+module.exports = voteRouteController;
